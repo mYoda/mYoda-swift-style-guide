@@ -7,7 +7,7 @@ Descriptive and consistent naming makes software easier to read and understand. 
 - prioritizing clarity over brevity
 - using `camelCase` (not `snake_case`)
 - using `UpperCamelCase` for types and protocols, `lowerCamelCase` for everything else
-- using `UpperCamelCase` for Folders in Project's structure or for Folders in Assets
+- using `UpperCamelCase` for Folders and FileNames in Project's structure or for Folders in Assets
 - including all needed words while omitting needless words
 
 **Preferred**:

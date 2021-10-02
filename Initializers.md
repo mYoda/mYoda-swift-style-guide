@@ -1,3 +1,5 @@
+## Initializers
+
 For clarity, initializer arguments that correspond directly to a stored property have the same name as the property. Explicit self. is used during assignment to disambiguate them.
 
 **Preferred**:

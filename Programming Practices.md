@@ -109,6 +109,8 @@ writeByte(50)
 ```
 The compiler will emit errors appropriately for invalid literal coercions if, for example, a number does not fit into the integer type or a multi-character string is coerced to a character. So while the following examples emit errors, they are “good” because the errors are caught at compile-time and for the right reasons.
 
+**Preffered:**
+
 ```swift
 // error: integer literal '9223372036854775808' overflows when stored into 'Int64'
 let a = 0x8000_0000_0000_0000 as Int64
@@ -119,6 +121,7 @@ let b = "ab" as Character
 
 Using initializer syntax for these types of coercions can lead to misleading compiler errors, or worse, hard-to-debug runtime errors.
 
+**Not Preffered:**
 ```swift
 // This first tries to create an `Int` (signed) from the literal and then
 // convert it to a `UInt64`. Even though this literal fits into a `UInt64`, it

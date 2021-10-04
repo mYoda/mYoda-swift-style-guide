@@ -10,28 +10,24 @@ Descriptive and consistent naming makes software easier to read and understand. 
 - using `UpperCamelCase` for Folders and FileNames in Project's structure or for Folders in Assets
 - including all needed words while omitting needless words
 
-**Preferred**:
 ```swift
 extension List {
   public mutating func remove(at position: Index) -> Element
 }
+// GOOD:
 employees.remove(at: x)
-```
-**Not Preferred**:
-```swift
+
+// AVOID:
 employees.remove(x) // unclear: are we removing x?
 ```
-**Preferred**:
+---
 ```swift
 public mutating func remove(_ member: Element) -> Element?
 
+// GOOD:
 allViews.remove(cancelButton) // clear
-```
 
-**Not Preferred**:
-```swift
-public mutating func removeElement(_ member: Element) -> Element?
-
+// AVOID:
 allViews.removeElement(cancelButton)
 ```
 ---  
@@ -40,6 +36,7 @@ allViews.removeElement(cancelButton)
 **Not Preferred**:
 ```swift
 var string = "Hello"
+
 protocol ViewController {
   associatedtype ViewType : View
 }
@@ -50,6 +47,7 @@ class ProductionLine {
 **Preferred**:
 ```swift
 var greeting = "Hello"
+
 protocol ViewController {
   associatedtype ContentView : View
 }
@@ -61,14 +59,13 @@ class ProductionLine {
 
 - Prefer method and function names that make use sites form grammatical English phrases.
 
-**Preferred**:
 ```swift
+// GOOD:
 x.insert(y, at: z)          “x, insert y at z”
 x.subViews(havingColor: y)  “x's subviews having color y”
 x.capitalizingNouns()       “x, capitalizing nouns”
-```
-**Not Preferred**:
-```swift 
+
+// AVOID:
 x.insert(y, position: z)
 x.subViews(color: y)
 x.nounCapitalize()

@@ -51,3 +51,23 @@ func discombobulate(_ values: [Int]) throws -> Int {
   }
 }
 ```
+---
+
+### for-where Loops
+When the entirety of a for loop’s body would be a single if block testing a condition of the element, the test is placed in the where clause of the for statement instead.
+
+Preffered:
+```swift
+for item in collection where item.hasProperty {
+  // ...
+}
+```
+
+Not Preffered:
+```swift
+for item in collection {
+  if item.hasProperty {
+    // ...
+  }
+}
+```

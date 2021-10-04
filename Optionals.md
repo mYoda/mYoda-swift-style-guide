@@ -17,7 +17,57 @@ if index != -1 {
   print("Didn't find it")
 }
 ```
+
+When accessing an optional value, use optional chaining if the value is only accessed once or if there are many optionals in the chain:
+```swift
+textContainer?.textLabel?.setNeedsDisplay()
+```
+
+When naming optional variables and properties, avoid naming them like optionalString or maybeView since their optional-ness is already in the type declaration.
+
 ---
+### Optional binding
+
+For **optional binding**, shadow the original name whenever possible rather than using names like unwrappedView or actualLabel.
+
+```swift
+var subview: UIView?
+var volume: Double?
+
+// later on...
+
+// GOOD:
+if let subview = subview, let volume = volume {
+  // do something with unwrapped subview and volume
+}
+
+// AVOID:
+if let unwrappedSubview = subview {
+  if let realVolume = volume {
+    // do something with unwrappedSubview and realVolume
+  }
+}
+```
+
+Another example:
+```swift
+// GOOD:
+resource.request().onComplete { [weak self] response in
+  guard let self = self else { return }
+  let model = self.updateModel(response)
+  self.updateUI(model)
+}
+
+// AVOID:
+// another example
+UIView.animate(withDuration: 2.0) { [weak self] in
+  guard let strongSelf = self else { return }
+  strongSelf.alpha = 1.0
+}
+```
+---
+### Conditional statements
+
 Conditional statements that test that an Optional is non-nil but do not access the wrapped value are written as comparisons to nil. The following example is clear about the programmer’s intent:
 ```swift
 // GOOD:

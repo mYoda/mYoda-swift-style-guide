@@ -97,3 +97,19 @@ x.nounCapitalize()
 - preferring to name the first parameter instead of including its name in the method name, except as mentioned under Delegates
 - labeling closure and tuple parameters
 - taking advantage of default parameters
+---
+**Global Constants**
+
+Like other variables, global constants are lowerCamelCase. Hungarian notation, such as a 
+leading g or k, is not used. 
+```swift 
+// GOOD:
+let secondsPerMinute = 60
+
+// AVOID:
+let SecondsPerMinute = 60
+let kSecondsPerMinute = 60
+let gSecondsPerMinute = 60
+let SECONDS_PER_MINUTE = 60
+```
+

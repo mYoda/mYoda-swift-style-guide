@@ -48,7 +48,7 @@ Explicitly calling .init(...) is allowed only when the receiver of the call is a
 // GOOD:
 let x = MyType(arguments)
 
-let type = lookupType(context)			// returns Type
+let type = lookupType(context)			// returns `MetaType`
 let x = type.init(arguments)
 
 // AVOID:

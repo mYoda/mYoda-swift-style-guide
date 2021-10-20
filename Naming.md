@@ -189,3 +189,52 @@ let SECONDS_PER_MINUTE = 60
   ```
   
   
+### Nesting and Namespacing
+Swift allows enums, structs, and classes to be nested, so nesting is preferred (instead of naming conventions) to express scoped and hierarchical relationships among types when possible. For example, flag enums or error types that are associated with a specific type are nested in that type.
+
+Preffered:
+```swift
+class Parser {
+  enum Error: Swift.Error {
+    case invalidToken(String)
+    case unexpectedEOF
+  }
+
+  func parse(text: String) throws {
+    // ...
+  }
+}
+```
+Not Preffered:
+```swift
+class Parser {
+  func parse(text: String) throws {
+    // ...
+  }
+}
+
+enum ParseError: Error {
+  case invalidToken(String)
+  case unexpectedEOF
+}
+```
+
+Declaring an enum without cases is the canonical way to define a “namespace” to group a set of related declarations, such as constants or helper functions. This enum automatically has no instances and does not require that extra boilerplate code be written to prevent instantiation.
+```swift
+// GOOD:
+enum Dimensions {
+  static let tileMargin: CGFloat = 8
+  static let tilePadding: CGFloat = 4
+  static let tileContentSize: CGSize(width: 80, height: 64)
+}
+// AVOID:
+struct Dimensions {
+  private init() {}
+
+  static let tileMargin: CGFloat = 8
+  static let tilePadding: CGFloat = 4
+  static let tileContentSize: CGSize(width: 80, height: 64)
+}
+```
+---
+

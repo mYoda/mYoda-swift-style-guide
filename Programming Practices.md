@@ -74,3 +74,36 @@ for item in collection {
 
 
 ---
+
+**Never use the `default` case when `switch`ing over an enum.**
+
+```swift
+  // WRONG
+  switch anEnum {
+  case .a:
+    // Do something
+  default:
+    // Do something else.
+  }
+
+  // RIGHT
+  switch anEnum {
+  case .a:
+    // Do something
+  case .b, .c:
+    // Do something else.
+  }
+  ```
+  
+  **Omit the `return` keyword when not required by the language.** [![SwiftFormat: redundantReturn](https://img.shields.io/badge/SwiftFormat-redundantReturn-7B0051.svg)](https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md#redundantReturn)
+  
+    ```swift
+  // WRONG
+  ["1", "2", "3"].compactMap { return Int($0) }
+
+
+  // RIGHT
+  ["1", "2", "3"].compactMap { Int($0) }
+  ```
+
+

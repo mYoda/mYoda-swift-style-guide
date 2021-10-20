@@ -104,52 +104,70 @@ return SomeEnum(rawValue: value)!
 ### Implicitly Unwrapped Optionals
 Implicitly unwrapped optionals are inherently **unsafe** and **should be avoided** whenever possible in favor of non-optional declarations or regular Optional types. Exceptions are described below.
 
+* The only time you should be using implicitly unwrapped optionals is with `@IBOutlet`s. In every other case, it is better to use a non-optional or regular optional property. Yes, there are cases in which you can probably "guarantee" that the property will never be `nil` when used, but it is better to be safe and consistent. Similarly, don't use force unwraps.
 
-### Nesting and Namespacing
-Swift allows enums, structs, and classes to be nested, so nesting is preferred (instead of naming conventions) to express scoped and hierarchical relationships among types when possible. For example, flag enums or error types that are associated with a specific type are nested in that type.
+* Don't use `as!` or `try!`.
 
-Preffered:
+* If you have an identifier `foo` of type `FooType?` or `FooType!`, don't force-unwrap it to get to the underlying value (`foo!`) if possible.
+
 ```swift
-class Parser {
-  enum Error: Swift.Error {
-    case invalidToken(String)
-    case unexpectedEOF
-  }
+// DON'T DO THIS:
 
-  func parse(text: String) throws {
-    // ...
-  }
-}
-```
-Not Preffered:
-```swift
-class Parser {
-  func parse(text: String) throws {
-    // ...
-  }
+if let some = optionals {
+    optionals!.doSomething()
 }
 
-enum ParseError: Error {
-  case invalidToken(String)
-  case unexpectedEOF
+// OR THIS:
+
+if let url = URL(string: data.url) {
+    model.doSomething(with: URL(string: data.url)!)
 }
+
 ```
 
-Declaring an enum without cases is the canonical way to define a “namespace” to group a set of related declarations, such as constants or helper functions. This enum automatically has no instances and does not require that extra boilerplate code be written to prevent instantiation.
-```swift
-// GOOD:
-enum Dimensions {
-  static let tileMargin: CGFloat = 8
-  static let tilePadding: CGFloat = 4
-  static let tileContentSize: CGSize(width: 80, height: 64)
-}
-// AVOID:
-struct Dimensions {
-  private init() {}
 
-  static let tileMargin: CGFloat = 8
-  static let tilePadding: CGFloat = 4
-  static let tileContentSize: CGSize(width: 80, height: 64)
+Instead, prefer this:
+
+```swift
+if let foo = foo {
+    // Use unwrapped `foo` value in here
+    foo.doSomething()
+
+} else {
+    // If appropriate, handle the case where the optional is nil
 }
 ```
----
+
+```swift
+guard let url = URL(string: data.url) else { return }
+    model.doSomething(with: url)
+}
+```
+
+Alternatively, you might want to use Swift's Optional Chaining in some of these cases, such as:
+
+```swift
+// Call the function if `foo` is not nil. If `foo` is nil, ignore we ever tried to make the call
+foo?.callSomethingIfFooIsNotNil()
+```
+
+* If you don't plan on actually using the value stored in an optional, but need to determine whether or not this value is `nil`, explicitly check this value against `nil` as opposed to using `if let` syntax.
+
+```swift
+// PREFERRED
+if someOptional != nil {
+    // do something
+}
+
+// NOT PREFERRED
+if let _ = someOptional {
+    // do something
+}
+```
+* When unwrapping optionals, use the same name for the unwrapped constant or variable where appropriate.
+
+```swift
+guard let myValue = myValue else {
+    return
+}
+```

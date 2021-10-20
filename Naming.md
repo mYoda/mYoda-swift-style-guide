@@ -55,6 +55,8 @@ class ProductionLine {
   func restock(from supplier: WidgetFactory)
 }
 ```
+
+**Name booleans like `isSpaceship`, `hasSpacesuit`, etc.** This makes it clear that they are booleans and not other types.
 ---  
 
 - Prefer method and function names that make use sites form grammatical English phrases.
@@ -110,3 +112,80 @@ let gSecondsPerMinute = 60
 let SECONDS_PER_MINUTE = 60
 ```
 
+**Acronyms in names (e.g. `URL`, `ID`) should be all-caps except when it’s the start of a name that would otherwise be *lowerCamelCase*, in which case it should be uniformly lower-cased.**
+
+  ```swift
+  // WRONG
+  class UrlValidator {
+
+    func isValidUrl(_ URL: URL) -> Bool {
+      // ...
+    }
+
+    func isProfileUrl(_ URL: URL, for userID: String) -> Bool {
+      // ...
+    }
+  }
+
+  let URLValidator = UrlValidator()
+  let isProfile = URLValidator.isProfileUrl(URLToTest, userId: IDOfUser)
+
+  // RIGHT
+  class URLValidator {
+
+    func isValidURL(_ url: URL) -> Bool {
+      // ...
+    }
+
+    func isProfileURL(_ url: URL, for userId: String) -> Bool {
+      // ...
+    }
+  }
+```
+
+**Names should be written with their most general part first and their most specific part last.** The meaning of "most general" depends on context, but should roughly mean "that which most helps you narrow down your search for the item you're looking for." Most importantly, be consistent with how you order the parts of your name.
+
+
+  ```swift
+  // WRONG
+  let rightTitleMargin: CGFloat
+  let leftTitleMargin: CGFloat
+  let bodyRightMargin: CGFloat
+  let bodyLeftMargin: CGFloat
+
+  // RIGHT
+  let titleMarginRight: CGFloat
+  let titleMarginLeft: CGFloat
+  let bodyMarginRight: CGFloat
+  let bodyMarginLeft: CGFloat
+
+  let urlValidator = URLValidator()
+  let isProfile = urlValidator.isProfileURL(urlToTest, userId: idOfUser)
+  ```
+
+**Include a hint about type in a name of a UI elements or objects if it would otherwise be ambiguous.**
+
+ ```swift
+  // WRONG
+  let text: UITextField
+  let cancel: UIButton
+
+  // RIGHT
+  let textField: UITextField
+  let cancelButton: UIButton
+  ```
+**Avoid Objective-C-style acronym prefixes.** This is no longer needed to avoid naming conflicts in Swift.
+
+ ```swift
+  // WRONG
+  class AIRAccount {
+    // ...
+  }
+
+  // RIGHT
+  class Account {
+    // ...
+  }
+  ```
+  
+  

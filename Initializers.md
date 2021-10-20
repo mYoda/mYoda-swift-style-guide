@@ -52,8 +52,9 @@ let type = lookupType(context)			// returns `MetaType`
 let x = type.init(arguments)
 
 // AVOID:
-let x = makeValue(factory: MyType.init)
 let x = MyType.init(arguments)
+let x = CGSize.init(uniform: 10)
+let x = makeValue(factory: MyType.init)
 ```
 
 ### Lazy Initialization

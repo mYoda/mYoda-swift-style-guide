@@ -243,3 +243,23 @@ private func isNeedToDoSomething() -> Bool {
     return items.count > 0
 }
 ```
+<br/>
+<br/>
+
+* Omit type parameters where possible
+
+Methods of parameterized types can omit type parameters on the receiving type when they’re identical to the receiver’s. For example:
+
+```swift
+struct Composite<T> {
+// GOOD
+    func compose(other: Composite) -> Composite {
+        return Composite(self, other)
+    }
+
+// AVOID
+    func compose(other: Composite<T>) -> Composite<T> {
+        return Composite<T>(self, other)
+    }
+}
+```

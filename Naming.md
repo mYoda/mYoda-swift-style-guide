@@ -56,7 +56,7 @@ class ProductionLine {
 }
 ```
 
-**Name booleans like `isSpaceship`, `hasSpacesuit`, etc.** This makes it clear that they are booleans and not other types.
+* Name booleans like `isSpaceship`, `hasSpacesuit`, etc.** This makes it clear that they are booleans and not other types.
 ---  
 
 - Prefer method and function names that make use sites form grammatical English phrases.

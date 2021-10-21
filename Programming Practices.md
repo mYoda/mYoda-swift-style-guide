@@ -1,19 +1,21 @@
 ## Programming Practices
 Common themes among the rules in this section are: avoid redundancy, avoid ambiguity, and prefer implicitness over explicitness unless being explicit improves readability and/or reduces ambiguity.
 
-### Compiler Warnings
-Code should compile ***without** warnings* when feasible. Any warnings that are able to be removed easily by the author must be removed.
+* Compiler Warnings
 
-A reasonable exception is deprecation warnings, where it may not be possible to immediately migrate to the replacement API, or where an API may be deprecated for external users but must still be supported inside a library during a deprecation period.
+> Code should compile ***without** warnings* when feasible. Any warnings that are able to be removed easily by the author must be removed.
 
----
+<br/>
+<br/>
 
-### **guards** for Early Exits
-A guard statement, compared to an if statement with an inverted condition, provides visual emphasis that the condition being tested is a special case that causes early exit from the enclosing scope.
 
-Furthermore, guard statements improve readability by eliminating extra levels of nesting (the “pyramid of doom”); failure conditions are closely coupled to the conditions that trigger them and the main logic remains flush left within its scope.
+* **guards** for Early Exits
 
-This can be seen in the following examples; in the first, there is a clear progression that checks for invalid states and exits, then executes the main logic in the successful case. In the second example without guard, the main logic is buried at an arbitrary nesting level and the thrown errors are separated from their conditions by a great distance.
+> A guard statement, compared to an if statement with an inverted condition, provides visual emphasis that the condition being tested is a special case that causes early exit from the enclosing scope.
+
+> Furthermore, guard statements improve readability by eliminating extra levels of nesting (the “pyramid of doom”); failure conditions are closely coupled to the conditions that trigger them and the main logic remains flush left within its scope.
+
+> This can be seen in the following examples; in the first, there is a clear progression that checks for invalid states and exits, then executes the main logic in the successful case. In the second example without guard, the main logic is buried at an arbitrary nesting level and the thrown errors are separated from their conditions by a great distance.
 
 Preffered:
 ```swift
@@ -51,9 +53,12 @@ func discombobulate(_ values: [Int]) throws -> Int {
   }
 }
 ```
----
+<br/>
+<br/>
 
-### for-where Loops
+
+* for-where Loops
+
 When the entirety of a for loop’s body would be a single if block testing a condition of the element, the test is placed in the where clause of the for statement instead.
 
 Preffered:
@@ -71,11 +76,15 @@ for item in collection {
   }
 }
 ```
+<br/>
+<br/>
 
 
----
 
 *  Prefer `let` to `var` whenever possible.
+<br/>
+<br/>
+
 
 * Prefer the composition of `map`, `filter`, `reduce`, etc. over iterating when transforming from one collection to another. Make sure to avoid using closures that have side effects when using these methods.
 
@@ -112,6 +121,8 @@ for integer in [4, 8, 15, 16, 23, 42] {
 // RIGHT
   ["1", "2", "3"].compactMap { Int($0) }
 ```
+<br/>
+<br/>
 
 * If a function `returns multiple` values, prefer returning a `tuple` to using `inout` arguments (it’s best to use labeled tuples for clarity on what you’re returning if it is not otherwise obvious). If you use a certain tuple more than once, consider using a `typealias`. If you’re returning 3 or more items in a tuple, consider using a `struct` or `class` instead.
 
@@ -124,6 +135,8 @@ let name = pirateName()
 let firstName = name.firstName
 let lastName = name.lastName
 ```
+<br/>
+<br/>
 
 * Be wary of retain cycles when creating delegates/protocols for your classes; typically, these properties should be declared `weak`.
 
@@ -146,6 +159,8 @@ myFunctionWithEscapingClosure() { [weak self] (error) -> Void in
 	...
 }
 ```
+<br/>
+<br/>
 
 * Don't place parentheses around control flow predicates.
 
@@ -160,6 +175,8 @@ if (x == y) {
     /* ... */
 }
 ```
+<br/>
+<br/>
 
 * Avoid writing out an `enum` type where possible - use shorthand.
 
@@ -172,8 +189,40 @@ imageView.backgroundColor = .white
 imageView.setImageWithURL(url, type: AsyncImageView.Type.person)
 imageView.backgroundColor = UIColor.white
 ```
+<br/>
+<br/>
 
 * Prefer not writing `self.` unless it is required.
+
+```swift
+private class History {
+    var events: [Event]
+
+    ....
+
+    // GOOD
+    func rewrite() {
+        events = []
+    }
+    //AVOID
+    func rewrite() {
+        self.events = []
+    }
+}
+```
+
+> Only include the explicit keyword when required by the language—for example, in a closure, or when parameter names conflict:
+
+```swift
+extension History {
+    init(events: [Event]) {
+        self.events = events
+    }
+}
+```
+<br/>
+<br/>
+
 
 * If you have a function that takes no arguments, has no side effects, and returns some object or value, prefer using a computed property instead.
 

@@ -166,19 +166,11 @@ if (x == y) {
 ```swift
 // PREFERRED
 imageView.setImageWithURL(url, type: .person)
+imageView.backgroundColor = .white
 
 // NOT PREFERRED
 imageView.setImageWithURL(url, type: AsyncImageView.Type.person)
-```
-
-* Don’t use shorthand for class methods since it is generally more difficult to infer the context from class methods as opposed to `enum`s.
-
-```swift
-// PREFERRED
 imageView.backgroundColor = UIColor.white
-
-// NOT PREFERRED
-imageView.backgroundColor = .white
 ```
 
 * Prefer not writing `self.` unless it is required.

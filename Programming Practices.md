@@ -263,3 +263,21 @@ struct Composite<T> {
     }
 }
 ```
+<br/>
+<br/>
+
+* Ommit the `get block` for a read-only computed property
+
+```swift 
+// GOOD:
+var totalCost: Int {
+  return items.sum { $0.cost }
+}
+
+// AVOID:
+var totalCost: Int {
+  get {
+    return items.sum { $0.cost }
+  }
+}
+```

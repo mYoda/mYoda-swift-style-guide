@@ -220,11 +220,13 @@ extension History {
     }
 }
 ```
+> This makes the capturing semantics of `self` stand out more in closures, and avoids verbosity elsewhere.
+
 <br/>
 <br/>
 
 
-* If you have a function that takes no arguments, has no side effects, and returns some object or value, prefer using a computed property instead.
+* If you have a function that takes `no arguments`, has no side effects, and returns some object or value, prefer using a computed property instead.
 
 ```swift
 

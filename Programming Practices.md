@@ -230,14 +230,14 @@ extension History {
 
 var items: [String] = []
 
+// GOOD
+var isNeedToDoSomething: Bool {
+    items.count > 0
+}
+
 // AVOID
 private func isNeedToDoSomething() -> Bool {
 
     return items.count > 0
-}
-
-// GOOD
-var isNeedToDoSomething: Bool {
-    items.count > 0
 }
 ```

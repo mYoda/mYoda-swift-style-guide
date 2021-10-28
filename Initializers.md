@@ -42,6 +42,8 @@ var array: [Int] = []
 var closure: (Int) -> Void = { _ in }
 ```
 
+### * .init(...)
+
 Explicitly calling .init(...) is allowed only when the receiver of the call is a metatype variable. In direct calls to the initializer using the literal type name, .init is omitted. (Referring to the initializer directly by using MyType.init syntax to convert it to a closure is permitted.)
 
 ```swift 

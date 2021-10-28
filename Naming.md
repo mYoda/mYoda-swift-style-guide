@@ -97,13 +97,23 @@ x.nounCapitalize()
 - labeling closure and tuple parameters
 - taking advantage of default parameters
 ---
-**Global Constants**
+* **Global Constants**
 
 Like other variables, global constants are lowerCamelCase. Hungarian notation, such as a 
 leading g or k, is not used. 
+All Global Constants should be inside a variable Namespace (Enum).
 ```swift 
 // GOOD:
-let secondsPerMinute = 60
+enum SpeedSpecs {
+    ...
+    let secondsPerMinute = 60
+    ...
+}
+
+//usage: 
+let speed = SpeedSpecs.secondsPerMinute
+
+//---
 
 // AVOID:
 let SecondsPerMinute = 60
@@ -111,6 +121,14 @@ let kSecondsPerMinute = 60
 let gSecondsPerMinute = 60
 let SECONDS_PER_MINUTE = 60
 ```
+
+> Exceptions: use uppercase constants as exeptions for services and modules when required
+> ```swift
+> // constant MUST be placed as Global for some SDK from Google
+> let APPLICATION_GOOGLE_KEY = "kfj24kjb23432kj23b423kjb"
+> ```
+
+
 
 **Acronyms in names (e.g. `URL`, `ID`) should be all-caps except when it’s the start of a name that would otherwise be *lowerCamelCase*, in which case it should be uniformly lower-cased.**
 

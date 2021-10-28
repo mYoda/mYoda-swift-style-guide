@@ -105,9 +105,7 @@ All Global Constants should be inside a variable Namespace (Enum).
 ```swift 
 // GOOD:
 enum SpeedSpecs {
-    ...
-    let secondsPerMinute = 60
-    ...
+    static let secondsPerMinute = 60
 }
 
 //usage: 

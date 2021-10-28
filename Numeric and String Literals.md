@@ -11,18 +11,15 @@ let x1 = 50
 
 // These are explicitly type Int32.
 let x2: Int32 = 50
-let x3 = 50 as Int32
 
 // Without a more explicit type, y1 will be inferred as type String.
 let y1 = "a"
 
 // These are explicitly type Character.
 let y2: Character = "a"
-let y3 = "a" as Character
 
 // These are explicitly type UnicodeScalar.
 let y4: UnicodeScalar = "a"
-let y5 = "a" as UnicodeScalar
 
 func writeByte(_ byte: UInt8) {
   // ...
@@ -31,16 +28,19 @@ func writeByte(_ byte: UInt8) {
 // explicitly coercion.
 writeByte(50)
 ```
+<br>
+<br>
+
 The compiler will emit errors appropriately for invalid literal coercions if, for example, a number does not fit into the integer type or a multi-character string is coerced to a character. So while the following examples emit errors, they are “good” because the errors are caught at compile-time and for the right reasons.
 
 **Preffered:**
 
 ```swift
 // error: integer literal '9223372036854775808' overflows when stored into 'Int64'
-let a = 0x8000_0000_0000_0000 as Int64
+let a: Int64 = 0x8000_0000_0000_0000 
 
 // error: cannot convert value of type 'String' to type 'Character' in coercion
-let b = "ab" as Character
+let b: Character = "ab"
 ```
 
 Using initializer syntax for these types of coercions can lead to misleading compiler errors, or worse, hard-to-debug runtime errors.

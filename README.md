@@ -19,10 +19,10 @@
 <br>
 <br>
 
-### Source:
+## References
 
-> 1. [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
-> 2. [raywenderlich.com Swift Style Guide](https://github.com/raywenderlich/swift-style-guide)
-> 3. [Google Swift Style Guide](https://google.github.io/swift/)
-> 4. [LinkedIn's Official Swift Style Guide](https://github.com/linkedin/swift-style-guide)
-> 5. [Airbnb's Swift Style Guide](https://github.com/airbnb/swift)
+* [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
+* [raywenderlich.com Swift Style Guide](https://github.com/raywenderlich/swift-style-guide)
+* [Google Swift Style Guide](https://google.github.io/swift/)
+* [LinkedIn's Official Swift Style Guide](https://github.com/linkedin/swift-style-guide)
+* [Airbnb's Swift Style Guide](https://github.com/airbnb/swift)

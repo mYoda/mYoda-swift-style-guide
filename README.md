@@ -1,5 +1,7 @@
 # swift-style-guide
 
+![Swift](./src/banner.png)
+
 * [Access Modifiers](Access%20Modifiers.md)
 * [Classes and Structures](Classes%20and%20Structures.md)
 * [Initializers](Initializers.md)

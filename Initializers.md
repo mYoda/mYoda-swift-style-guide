@@ -79,3 +79,40 @@ private func makeLocationManager() -> CLLocationManager {
 > - Location manager has a side-effect for popping up UI to ask the user for permission so fine grain control makes sense here.
 
 
+### Type Annotation for Empty Arrays and Dictionaries
+
+For empty arrays and dictionaries, use type annotation. (For an array or dictionary assigned to a large, multi-line literal, use type annotation.)
+
+**Preferred**:
+```swift
+var names: [String] = []
+var lookup: [String: Int] = [:]
+```
+
+**Not Preferred**:
+```swift
+var names = [String]()
+var lookup = [String: Int]()
+```
+
+**NOTE**: Following this guideline means picking descriptive names is even more important than before.
+
+
+### Syntactic Sugar
+
+Prefer the shortcut versions of type declarations over the full generics syntax.
+
+**Preferred**:
+```swift
+var deviceModels: [String]
+var employees: [Int: String]
+var faxNumber: Int?
+```
+
+**Not Preferred**:
+```swift
+var deviceModels: Array<String>
+var employees: Dictionary<Int, String>
+var faxNumber: Optional<Int>
+```
+
